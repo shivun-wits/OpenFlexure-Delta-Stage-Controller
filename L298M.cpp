@@ -1,4 +1,5 @@
 #include "L298M.h"
+#include <Arduino.h>
 
 L298M::L298M(uint8_t cw, uint8_t ccw)
 {

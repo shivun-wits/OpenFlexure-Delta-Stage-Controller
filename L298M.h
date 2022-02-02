@@ -1,6 +1,8 @@
 #ifndef L298M_H
 #define L298M_H
 
+#include <stdint.h>
+
 class L298M
 {
 
