@@ -23,7 +23,7 @@
 #define MOTOR_B_ENC_90 8
 
 #define MOTOR_C_ENC_0 12
-#define MOTOR_C_ENC_90 13
+#define MOTOR_C_ENC_90 A0
 
 EncoderPCI encoderA(MOTOR_A_ENC_0, MOTOR_A_ENC_90, 'A');
 L298M motorA(MOTOR_A1, MOTOR_A2);
@@ -38,13 +38,13 @@ double ATarget_PID, AFeedBack_PID, AOut_PID;
 double BTarget_PID, BFeedBack_PID, BOut_PID;
 double CTarget_PID, CFeedBack_PID, COut_PID;
 
-double AKp = 3000, AKd = 100, AKi = 1000;
-double BKp = 3000, BKd = 100, BKi = 1000;
-double CKp = 3000, CKd = 100, CKi = 1000;
+double AKp = 4000, AKd = 50, AKi = 1500;
+double BKp = 4000, BKd = 50, BKi = 1500;
+double CKp = 4000, CKd = 50, CKi = 1500;
 
-double AmaxPWM_PID = 255;
-double BmaxPWM_PID = 255;
-double CmaxPWM_PID = 255;
+double AmaxPWM_PID = 140;
+double BmaxPWM_PID = 140;
+double CmaxPWM_PID = 140;
 
 bool enablePID = false;
 
@@ -203,6 +203,10 @@ void PID_enable()
     A_PID.SetMode(AUTOMATIC);
     B_PID.SetMode(AUTOMATIC);
     C_PID.SetMode(AUTOMATIC);
+
+    A_PID.SetTunings(AKp, AKi, AKd);
+    B_PID.SetTunings(BKp, BKi, BKd);
+    C_PID.SetTunings(CKp, CKi, CKd);
 }
 
 void PID_disable()
@@ -473,20 +477,36 @@ void stop()
 
     motorA.setHold(false);
     motorA.stop();
+
+    motorB.setHold(false);
+    motorB.stop();
+
+    motorC.setHold(false);
+    motorC.stop();
 }
+
+const int maximumpower = 130;
 
 void cw()
 {
     Serial.println("CW");
-    motorA.setVector(126);
+    motorA.setVector(maximumpower);
     motorA.run();
+    motorB.setVector(maximumpower);
+    motorB.run();
+    motorC.setVector(maximumpower);
+    motorC.run();
 }
 
 void ccw()
 {
     Serial.println("CCW");
-    motorA.setVector(-126);
+    motorA.setVector(-maximumpower);
     motorA.run();
+    motorB.setVector(-maximumpower);
+    motorB.run();
+    motorC.setVector(-maximumpower);
+    motorC.run();
 }
 
 double rawToRot(long raw)
