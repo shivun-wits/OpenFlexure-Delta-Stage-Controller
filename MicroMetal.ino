@@ -187,12 +187,13 @@ void PID_menu()
     Serial.println("P{float} - Change Kp");
     Serial.println("I{float} - Change Ki");
     Serial.println("D{float} - Change Kd");
-    Serial.println("E        - Save to EEPROM");
-    Serial.println("L        - Get Current Position");
+    // Serial.println("E        - Save to EEPROM");
+    // Serial.println("L        - Get Current Position");
     Serial.println("M{f,f,f} - Move Absolute");
     Serial.println("R{f,f,f} - Move Relative");
-    Serial.println("S{c,int} - Max PWM 0-255");
-    Serial.println("C        - Calibrate");
+    Serial.println("O{f,f,f} - Delta Absolute Movement");
+    // Serial.println("S{c,int} - Max PWM 0-255");
+    // Serial.println("C        - Calibrate");
     Serial.println("1        - Enable PID");
     Serial.println("0        - Disable PID");
 }
@@ -246,24 +247,24 @@ void handlePIDCommand()
     case '1':
         PID_enable();
         break;
-    case '6':
-        readCode(buffer);
-        ATarget_PID = buffer.toDouble();
-        Serial.print("A Position Target --> ");
-        Serial.println(ATarget_PID);
-        break;
-    case '7':
-        readCode(buffer);
-        BTarget_PID = buffer.toDouble();
-        Serial.print("B Position Target --> ");
-        Serial.println(BTarget_PID);
-        break;
-    case '8':
-        readCode(buffer);
-        CTarget_PID = buffer.toDouble();
-        Serial.print("C Position Target --> ");
-        Serial.println(CTarget_PID);
-        break;
+    // case '6':
+    //     readCode(buffer);
+    //     ATarget_PID = buffer.toDouble();
+    //     Serial.print("A Position Target --> ");
+    //     Serial.println(ATarget_PID);
+    //     break;
+    // case '7':
+    //     readCode(buffer);
+    //     BTarget_PID = buffer.toDouble();
+    //     Serial.print("B Position Target --> ");
+    //     Serial.println(BTarget_PID);
+    //     break;
+    // case '8':
+    //     readCode(buffer);
+    //     CTarget_PID = buffer.toDouble();
+    //     Serial.print("C Position Target --> ");
+    //     Serial.println(CTarget_PID);
+    //     break;
 
     case 'M':
         linebuffer = linebuffer.substring(1);
