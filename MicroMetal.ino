@@ -172,8 +172,8 @@ void OptionsMenu()
     Serial.println("1 - Stop");
     Serial.println("2 - Clock-wise");
     Serial.println("3 - Counter-clock-wise");
-    Serial.println("4 - Read Encoder");
-    Serial.println("5 - Reset Encoder");
+    Serial.println("4 - Read Encoders");
+    Serial.println("5 - Reset Encoders");
     Serial.println("6 - Stop & Hold");
     Serial.println("P - PID Command");
 }
@@ -184,14 +184,14 @@ void PID_menu()
 {
     Serial.println("PID Commands: P{xxx}\n");
     Serial.println("Q        - Query info");
-    Serial.println("P{float} - Change Kp");
-    Serial.println("I{float} - Change Ki");
-    Serial.println("D{float} - Change Kd");
+    Serial.println("P{m,f}   - Change Kp");
+    Serial.println("I{m,f}   - Change Ki");
+    Serial.println("D{m,f}   - Change Kd");
     // Serial.println("E        - Save to EEPROM");
     // Serial.println("L        - Get Current Position");
     Serial.println("M{f,f,f} - Move Absolute");
     Serial.println("R{f,f,f} - Move Relative");
-    Serial.println("O{f,f,f} - Delta Absolute Movement");
+    // Serial.println("O{f,f,f} - Delta Absolute Movement");
     // Serial.println("S{c,int} - Max PWM 0-255");
     // Serial.println("C        - Calibrate");
     Serial.println("1        - Enable PID");
